@@ -17,9 +17,9 @@
     <body class="font-sans text-neutral-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-neutral-100 dark:bg-neutral-900">
             <div>
-                <a href="/">
+                <a href="/" class="flex items-center gap-2">
                     <x-application-logo class="w-20 h-20 fill-current text-neutral-500" /> 
-                    <span> Insights</span>
+                    <span class="text-3xl"> Insights</span>
                 </a>
             </div>
 

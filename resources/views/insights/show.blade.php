@@ -36,7 +36,7 @@
         <div class="mt-6 flex items-center space-x-4 dark:text-neutral-200">
             <form action="{{ route('insights.like', $insight->id) }}" method="POST" class="flex items-center">
                 @csrf
-                <button type="submit" class="flex items-center text-customGreenDark dark:text-customGreenLight hover:text-blue-800 dark:hover:text-green-300 transition duration-300">
+                <button type="submit" class="flex items-center text-customGreenDark dark:text-customGreenLight hover:text-green-300 dark:hover:text-green-300 transition duration-300">
                     <svg class="w-6 h-6 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.5 3.5 5 5.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5 18.5 5 20 6.5 20 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
                     </svg>

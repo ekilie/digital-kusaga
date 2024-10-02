@@ -14,7 +14,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/insights', [InsightController::class, 'index'])->name('insights.index');
 
-    Route::get('/insights/create', [InsightController::class, 'create'])->name('insights.create');
+    // Route::get('/insights/create', [InsightController::class, 'create'])->name('insights.create'); doesnt work for some reason
+    Route::get('/write', [InsightController::class, 'create'])->name('insights.create');
     
     Route::post('/insights', [InsightController::class, 'store'])->name('insights.store');
     Route::get('/insights/{insight}/edit', [InsightController::class, 'edit'])->name('insights.edit');

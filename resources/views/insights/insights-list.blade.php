@@ -11,7 +11,7 @@
                           <time datetime="{{ $insight->created_at }}" class="text-neutral-500 mx-2">
                               {{ $insight->created_at->diffForHumans() }}
                           </time>
-                          <a href="/category/{{ $insight->category->name }}" class="relative z-10 rounded-full mx-2 bg-neutral-800 px-2 py-1.5 font-medium text-neutral-400 hover:bg-neutral-700">
+                          <a href="/category/{{ $insight->category->slug }}" class="relative z-10 rounded-full mx-2 bg-neutral-800 px-2 py-1.5 font-medium text-neutral-400 hover:bg-neutral-700">
                               {{ $insight->category->name }}
                           </a>
                       </div>
