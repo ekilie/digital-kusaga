@@ -1,4 +1,5 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-neutral-800 border-b border-neutral-100 dark:border-neutral-700">
+@props(['insight'])
+<nav x-data="{ open: false }" class="bg-white dark:bg-neutral-900 border-b border-neutral-100 dark:border-neutral-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -19,13 +20,21 @@
             </div>
             
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 gap-2">
                 @auth
-                <x-link-button to="{{route('insights.create')}}">{{__('Write')}}</x-link-button>
+
+                    {{-- @if (request()->routeIs(route("insights.show")))
+                        <x-primary-button to="{{route('insights.create',)}}">
+                            {{__('Share')}}
+                        </x-primary-button>
+                    @endif --}}
+                    <x-link-button to="{{route('insights.create')}}">
+                        {{__('Write')}}
+                    </x-link-button>
                 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-neutral-500 dark:text-neutral-400 bg-white dark:bg-neutral-800 hover:text-neutral-700 dark:hover:text-neutral-300 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 mx-2 border border-transparent text-sm leading-4 font-medium rounded-md text-neutral-500 dark:text-neutral-400 bg-white dark:bg-neutral-800 hover:text-neutral-700 dark:hover:text-neutral-300 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

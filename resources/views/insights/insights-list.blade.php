@@ -5,7 +5,7 @@
           @foreach($insights as $insight)
               <x-card>
                   <!-- Article with Fixed Height and Reduced Gaps -->
-                  <article class="flex h-[400px] w-full flex-col justify-between bg-white dark:bg-neutral-900   rounded-md">
+                  <article class="flex h-[400px] w-full flex-col justify-between bg-white dark:bg-neutral-900   rounded-lg">
                       <!-- Time and Category Badge -->
                       <div class="flex items-center gap-x-2 text-xs">
                           <time datetime="{{ $insight->created_at }}" class="text-neutral-500 mx-2">

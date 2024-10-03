@@ -1,6 +1,3 @@
-Here’s an expanded cheat sheet that dives deeper into Laravel Eloquent and database functionalities, covering many more methods and features.
-
----
 
 ### Laravel Eloquent Cheat Sheet
 

@@ -73,6 +73,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> --}}
 </head>
 
 <body class="font-sans antialiased bg-gray-100 dark:bg-neutral-950">

@@ -17,19 +17,56 @@
 
         <!-- Insight Content -->
         <x-card >
-            <div class="flex items-center gap-x-2 text-xs">
+            <div class="flex items-center justify-between">
                 
-                <a href="/category/{{ $insight->category->name }}" class="relative z-10 rounded-full mx-2 bg-neutral-800 px-2 py-1.5 font-medium text-neutral-400 hover:bg-neutral-700">
-                    {{ $insight->user->name }}
-                </a>
+                <div class="flex-items-center gap-x-2 text-xs">
+                    <a href="/category/{{ $insight->category->name }}" class="relative z-10 rounded-full mx-2 bg-neutral-800 px-2 py-1.5 font-medium text-neutral-400 hover:bg-neutral-700">
+                        {{ $insight->user->name }}
+                    </a>
+    
+                    <time datetime="{{ $insight->created_at }}" class="text-neutral-500 mx-2">
+                        {{ $insight->created_at->diffForHumans() }}
+                    </time>
+                </div>
 
-                <time datetime="{{ $insight->created_at }}" class="text-neutral-500 mx-2">
-                    {{ $insight->created_at->diffForHumans() }}
-                </time>
+                <div class="flex items-center gap-x-2">
+                    @if (Auth::user() == $insight->user)
+                        <x-secondary-link :to="route('insights.edit',$insight->id)">
+                            {{__('Edit')}} 
+                        </x-secondary-link>
+                    @endif
+                    <x-primary-button
+                        x-data="" 
+                        x-on:click.prevent="$dispatch('open-modal', 'share-insight')">
+                        {{__('Share')}} 
+                    </x-primary-button>
+                </div>
+                {{-- share modal --}}
+                <x-modal name="share-insight">
+                    <div class="p-4">
+                        <h1 class="text-2xl font-bold">Share insight</h1> <br>
+                        <p><b>Copy link:</b>  {{request()->url()}}</p>
+                        <div class="mt-6 flex justify-end">
+                            <x-secondary-button x-on:click="$dispatch('close')">
+                                {{ __('Cancel') }}
+                            </x-secondary-button>
+            
+                            
+                        </div>
+                    </div>
+                </x-modal>
             </div>
-            <article class="prose dark:prose-invert max-w-none">
-                {!! $insight->content !!}
+            <article class="prose dark:prose-invert max-w-none" id="content-output">
+                
+                {{-- @component('components.markdown-component', 
+                ['markdown' => $insight->content])
+                @endcomponent --}}
+                <pre class="font-inherit">
+                    <md-block class="line-height-4">{!!$insight->content!!}</md-block>
+                </pre>
+                {{-- {!! \Illuminate\Support\Markdown::parse($insight->content) !!} --}}
             </article>
+            
         </x-card>
 
         <!-- Like Button with Enhanced Styling -->
