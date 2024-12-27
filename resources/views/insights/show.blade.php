@@ -45,8 +45,15 @@
                 <x-modal name="share-insight">
                     <div class="p-4">
                         <h1 class="text-2xl font-bold">Share insight</h1> <br>
-                        <p><b>Copy link:</b>  {{request()->url()}}</p>
-                        <div class="mt-6 flex justify-end">
+                        <p>
+                            <b>Copy link:</b>  
+                            <span id="insight-link">{{request()->url()}}</span>
+                        </p>
+                        <div class="mt-6 flex justify-end gap-2">
+                            <x-primary-button  id="link-copy-button">
+                                {{ __('Copy') }}
+                            </x-primary-button>
+
                             <x-secondary-button x-on:click="$dispatch('close')">
                                 {{ __('Cancel') }}
                             </x-secondary-button>
@@ -56,15 +63,20 @@
                     </div>
                 </x-modal>
             </div>
-            <article class="prose dark:prose-invert max-w-none" id="content-output">
+            <article class=" max-w-none" id="content-output">
                 
-                {{-- @component('components.markdown-component', 
-                ['markdown' => $insight->content])
-                @endcomponent --}}
-                <pre class="font-inherit">
-                    <md-block class="line-height-4">{!!$insight->content!!}</md-block>
-                </pre>
-                {{-- {!! \Illuminate\Support\Markdown::parse($insight->content) !!} --}}
+                <md-block class="">
+                    <span class="font-inherit w-full">
+                        {!! $insight->html !!}
+                    </span>
+                </md-block>
+
+                @if (Auth::user() == $insight->user)
+                    <div class="flex mt-4">
+                        @include("insights.delete-insight")
+                    </div>
+                @endif
+                
             </article>
             
         </x-card>
@@ -103,10 +115,10 @@
                 <form action="{{ route('comments.store', $insight->id) }}" method="POST" class="mt-6">
                     @csrf
                     <div>
-                        <textarea name="comment" rows="4" class="w-full p-4 rounded-lg border dark:bg-neutral-900 dark:border-neutral-700 focus:outline-none focus:ring focus:ring-blue-500 dark:focus:ring-blue-400 placeholder-neutral-500 dark:placeholder-neutral-400" placeholder="Write a comment..." required></textarea>
+                        <textarea name="comment" rows="4" class="w-full p-4 rounded-lg border dark:bg-neutral-900 text-black dark:text-white dark:border-neutral-700 focus:outline-none focus:ring focus:ring-neutral-500 dark:focus:ring-neutral-400 placeholder-neutral-500 dark:placeholder-neutral-400" placeholder="Write a comment..." required></textarea>
                     </div>
                     <div class="mt-4">
-                        <x-primary-button type="submit" class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-700 dark:hover:bg-blue-400 transition duration-300">
+                        <x-primary-button type="submit" class="bg-customGreenDark dark:bg-customGreenLight text-white px-5 py-2 rounded-md border-none  hover:bg-neutral-700 dark:hover:bg-neutral-400 transition duration-300">
                             Add Comment
                         </x-primary-button>
                     </div>

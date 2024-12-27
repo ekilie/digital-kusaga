@@ -97,6 +97,9 @@ class InsightController extends Controller
     public function destroy($id)
     {
         $insight = Insight::findOrFail($id);
+        if (Auth::user() != $insight->user){
+            return redirect(request()->url());
+        }
         $insight->delete();
         return redirect()->route('insights.index')->with('success', 'Insight deleted successfully.');
     }

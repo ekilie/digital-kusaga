@@ -3,8 +3,9 @@
         <div class="container mx-auto">
             <h1 class="text-2xl font-bold">Edit Insight</h1>
         
-            <form action="{{ route('insights.store') }}" method="POST">
+            <form action="{{ route('insights.update', $insight->id) }}" method="POST">
                 @csrf
+                @method('PUT')
         
                 <div class="mt-2">
                     <x-input-label for="title" :value="__('Title')" />

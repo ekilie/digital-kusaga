@@ -6,8 +6,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}" class="">
-                        <x-application-logo class="block h-8 w-8 fill-current text-neutral-800 dark:text-neutral-200" />
+                    <a href="/" class="flex gap-2 m dark:text-neutral-200">
+                        <x-application-logo class="block h-8 w-8 fill-current" />
+                        <h1 class="font-bold text-3xl">INSIGHTS</h1>
                     </a>
                 </div>
 
